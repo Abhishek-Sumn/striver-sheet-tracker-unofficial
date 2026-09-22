@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 130%;
+  }
+
+  :root {
+    --bg-main: #09090b;
+    --card-bg: #121215;
+    --border-color: #27272a;
+    --accent-color: #f97316;
+  }
+
+  /* Orange and Pitch Black OLED Theme */
+  [data-theme="orange"],
+  .theme-orange {
+    --bg-main: #000000;
+    --card-bg: #0c0c0e;
+    --border-color: #1f1f23;
+    --accent-color: #ff6a00;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: #f4f4f5;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .theme-orange body,
+  [data-theme="orange"] body {
+    background-color: #000000;
+    color: #fafaf9;
+  }
+}
+
+/* Minimalist dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+[data-theme="orange"] ::-webkit-scrollbar-thumb {
+  background: #241c16;
+}
+
+[data-theme="orange"] ::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* Crisp Linear-style card & surface classes */
+.surface-card {
+  background: #121215;
+  border: 1px solid #27272a;
+}
+
+.theme-orange .surface-card,
+[data-theme="orange"] .surface-card {
+  background: #0b0b0d;
+  border: 1px solid #221c17;
+}
+
+.surface-card-hover {
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.surface-card-hover:hover {
+  background: #18181b;
+  border-color: #3f3f46;
+}
+
+.theme-orange .surface-card-hover:hover,
+[data-theme="orange"] .surface-card-hover:hover {
+  background: #14110e;
+  border-color: #ff781f;
+}
+
+.surface-modal {
+  background: #121215;
+  border: 1px solid #27272a;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+}
+
+.theme-orange .surface-modal,
+[data-theme="orange"] .surface-modal {
+  background: #09090b;
+  border: 1px solid #2a2018;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.95);
+}

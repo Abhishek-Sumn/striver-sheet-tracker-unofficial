@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="A self-contained offline revision archive for Striver's SDE and A2Z DSA sheets.">
+  <title>Striver Revision Ledger   Offline archive</title>
+  <style>
+__ARCHIVE_CSS__
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#problem-list">Skip to the problem list</a>
+
+  <header class="masthead">
+    <div class="masthead__grid">
+      <div class="masthead__copy">
+        <p class="eyebrow">Personal offline DSA archive <span aria-hidden="true">/</span> captured 29 Jul 2026</p>
+        <h1>The revision ledger that keeps working offline.</h1>
+        <p class="dek">All <strong>665</strong> published problem titles from Striver s SDE and A2Z sheets, with their official hierarchy, practice platforms, articles, and <strong>556</strong> available YouTube links.</p>
+
+        <div class="hero-actions" aria-label="Archive actions">
+          <button class="button button--light" id="print-button" type="button">Print list</button>
+          <button class="button button--ghost" id="export-button" type="button">Export progress</button>
+          <button class="button button--ghost" id="import-button" type="button">Import progress</button>
+        </div>
+
+        <p class="offline-note"><span class="status-dot" aria-hidden="true"></span>The list and your saved progress work without internet. External practice and video links still require a connection.</p>
+      </div>
+
+      <aside class="trace-board" aria-labelledby="trace-title">
+        <div class="trace-board__heading">
+          <div>
+            <p class="micro-label">Revision trace</p>
+            <h2 id="trace-title">Your run</h2>
+          </div>
+          <strong id="overall-percent">0%</strong>
+        </div>
+        <div class="trace-line" aria-hidden="true"><span id="overall-progress"></span></div>
+        <div class="trace-row" data-trace-sheet="SDE">
+          <div class="trace-index">01</div>
+          <div>
+            <strong>SDE sheet</strong>
+            <span><b id="sde-done">0</b> of 191 complete</span>
+          </div>
+          <div class="mini-track" aria-hidden="true"><span id="sde-progress"></span></div>
+        </div>
+        <div class="trace-row" data-trace-sheet="A2Z">
+          <div class="trace-index">02</div>
+          <div>
+            <strong>A2Z sheet</strong>
+            <span><b id="a2z-done">0</b> of 474 complete</span>
+          </div>
+          <div class="mini-track" aria-hidden="true"><span id="a2z-progress"></span></div>
+        </div>
+        <p class="trace-board__foot">Progress is stored only in this browser. Use  Export progress  before moving the file to another device.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="command-deck" aria-labelledby="controls-title">
+      <div class="deck-intro">
+        <p class="micro-label">Command deck</p>
+        <h2 id="controls-title">Find the next question</h2>
+      </div>
+
+      <div class="sheet-tabs" role="group" aria-label="Choose a sheet">
+        <button class="sheet-tab is-active" type="button" data-sheet="ALL" aria-pressed="true">All <span>665</span></button>
+        <button class="sheet-tab" type="button" data-sheet="SDE" aria-pressed="false">SDE <span>191</span></button>
+        <button class="sheet-tab" type="button" data-sheet="A2Z" aria-pressed="false">A2Z <span>474</span></button>
+      </div>
+
+      <div class="filter-grid">
+        <label class="search-field" for="search-input">
+          <span>Search title, topic, ID, or platform</span>
+          <div class="search-field__control">
+            <span aria-hidden="true">#</span>
+            <input id="search-input" type="search" autocomplete="off" placeholder="Try  binary tree  or  LeetCode ">
+            <kbd title="Keyboard shortcut">/</kbd>
+          </div>
+        </label>
+
+        <label class="select-field" for="difficulty-filter">
+          <span>Difficulty</span>
+          <select id="difficulty-filter">
+            <option value="ALL">All levels</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </label>
+
+        <label class="select-field" for="platform-filter">
+          <span>Practice platform</span>
+          <select id="platform-filter">
+            <option value="ALL">All platforms</option>
+            <option value="LeetCode">LeetCode</option>
+            <option value="takeUforward">takeUforward</option>
+            <option value="No official practice link">No official link</option>
+          </select>
+        </label>
+
+        <label class="select-field" for="video-filter">
+          <span>Video</span>
+          <select id="video-filter">
+            <option value="ALL">With or without video</option>
+            <option value="WITH">Video available</option>
+            <option value="WITHOUT">No video listed</option>
+          </select>
+        </label>
+
+        <label class="select-field" for="status-filter">
+          <span>Revision status</span>
+          <select id="status-filter">
+            <option value="ALL">Any status</option>
+            <option value="OPEN">Not completed</option>
+            <option value="DONE">Completed</option>
+            <option value="REVIEW">Marked for review</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="filter-actions">
+        <button class="text-button" id="clear-filters" type="button">Clear filters</button>
+        <button class="text-button text-button--danger" id="reset-progress" type="button">Reset all progress</button>
+      </div>
+    </section>
+
+    <section class="result-summary" aria-live="polite" aria-atomic="true">
+      <div>
+        <span class="summary-number" id="visible-count">665</span>
+        <span class="summary-label">questions shown</span>
+      </div>
+      <div>
+        <span class="summary-number" id="visible-done">0</span>
+        <span class="summary-label">shown complete</span>
+      </div>
+      <div>
+        <span class="summary-number" id="visible-review">0</span>
+        <span class="summary-label">shown for review</span>
+      </div>
+      <p id="result-context">Both sheets � all difficulties � all platforms</p>
+    </section>
+
+    <div class="empty-state" id="empty-state" hidden>
+      <span aria-hidden="true">"</span>
+      <h2>No questions match these filters</h2>
+      <p>Clear one or more filters, or try a shorter search.</p>
+      <button class="button button--primary" id="empty-clear" type="button">Show all questions</button>
+    </div>
+
+    <div class="problem-list" id="problem-list" tabindex="-1"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <p class="micro-label">Source record</p>
+      <p>Official sheet data reported  last updated December 13, 2025  when archived. Problem statements are not copied; this file preserves titles, order, metadata, and links.</p>
+    </div>
+    <nav aria-label="Original source pages">
+      <a href="https://takeuforward.org/dsa/strivers-sde-sheet-top-coding-interview-problems" target="_blank" rel="noopener noreferrer">Original SDE sheet</a>
+      <a href="https://takeuforward.org/dsa/strivers-a2z-sheet-learn-dsa-a-to-z" target="_blank" rel="noopener noreferrer">Original A2Z sheet</a>
+    </nav>
+  </footer>
+
+  <input id="import-file" type="file" accept="application/json,.json" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">JavaScript must be enabled to search and display this offline archive.</p></noscript>
+
+  <script id="archive-data" type="application/json">__ARCHIVE_DATA__</script>
+  <script>
+__ARCHIVE_JS__
+  </script>
+</body>
+</html>
