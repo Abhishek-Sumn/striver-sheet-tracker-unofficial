@@ -29,7 +29,11 @@ export function useTracker(allProblems: ProblemRow[]) {
 
     const unsubscribe = adapter.subscribe((updatedState) => {
       if (isMounted) {
-        setProgress(updatedState);
+        queueMicrotask(() => {
+          if (isMounted) {
+            setProgress(updatedState);
+          }
+        });
       }
     });
 

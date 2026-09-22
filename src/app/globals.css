@@ -3,15 +3,24 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-size: 130%;
-  }
-
   :root {
+    /* ==========================================================================
+       GLOBAL SITE SCALE VARIABLE
+       Controls overall site scaling, text sizes, spacing, and icon dimensions.
+       - 100%: Standard browser baseline (16px base font)
+       - 117%: Reduced by 10% from the previous 130%
+       - Adjust this value anytime to scale the entire UI up or down.
+       ========================================================================== */
+    --site-scale: 117%;
+
     --bg-main: #09090b;
     --card-bg: #121215;
     --border-color: #27272a;
     --accent-color: #f97316;
+  }
+
+  html {
+    font-size: var(--site-scale, 117%);
   }
 
   /* Orange and Pitch Black OLED Theme */

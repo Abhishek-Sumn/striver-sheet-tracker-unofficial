@@ -207,26 +207,29 @@ export const DSASectionAccordion: React.FC<DSASectionAccordionProps> = ({
   }, [lastActiveProblem, lastOpenedSection, openSections, openSubtopics]);
 
   const toggleSection = (key: string) => {
-    setOpenSections((prev) => {
-      const willOpen = !prev[key];
-      const updated = { ...prev, [key]: willOpen };
-      if (willOpen) {
-        onOpenSectionChange?.(key);
-        const sec = sections.find((s) => `${s.sheet}::${s.section_name}` === key);
-        if (sec && sec.subtopicList.length > 0) {
-          const firstSubKey = `${key}::${sec.subtopicList[0].subtopic_name}`;
-          setOpenSubtopics((sPrev) => ({
-            ...sPrev,
-            [firstSubKey]: true,
-          }));
-        }
-      } else {
-        if (lastOpenedSection === key) {
-          onOpenSectionChange?.(null);
-        }
+    const isCurrentlyOpen = !!openSections[key];
+    const willOpen = !isCurrentlyOpen;
+
+    setOpenSections((prev) => ({
+      ...prev,
+      [key]: willOpen,
+    }));
+
+    if (willOpen) {
+      onOpenSectionChange?.(key);
+      const sec = sections.find((s) => `${s.sheet}::${s.section_name}` === key);
+      if (sec && sec.subtopicList.length > 0) {
+        const firstSubKey = `${key}::${sec.subtopicList[0].subtopic_name}`;
+        setOpenSubtopics((sPrev) => ({
+          ...sPrev,
+          [firstSubKey]: true,
+        }));
       }
-      return updated;
-    });
+    } else {
+      if (lastOpenedSection === key) {
+        onOpenSectionChange?.(null);
+      }
+    }
   };
 
   const toggleSubtopic = (subKey: string) => {
